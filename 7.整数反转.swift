@@ -43,7 +43,15 @@
 // @lc code=start
 class Solution {
     func reverse(_ x: Int) -> Int {
-        var arr: [Int]     
+        var tmp = x
+        var result = 0
+        while tmp != 0 {
+            let a = tmp % 10
+            tmp = tmp / 10
+            result = result * 10 + a
+        }
+        guard result < Int32.max && result > Int32.min else { return 0 }
+        return result
     }
 }
 // @lc code=end
