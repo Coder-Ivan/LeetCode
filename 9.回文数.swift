@@ -41,11 +41,29 @@
  * 
  */
 
-// @lc code=start
 class Solution {
     func isPalindrome(_ x: Int) -> Bool {
         guard x >= 0 else { return false }
-        
+        var numberStr = String(x)
+        while numberStr.count > 1 {
+            guard numberStr.removeFirst() == numberStr.removeLast() else { return false }
+        }
+        return true
+    }
+}
+
+// @lc code=start
+class Solution {
+    func isPalindrome(_ x: Int) -> Bool {
+        if x == 0 { return true }
+        guard x > 0 && x % 10 != 0 else { return false }
+        var oriNumber = x
+        var revertNumber = 0
+        while oriNumber > revertNumber {
+            revertNumber = revertNumber * 10 + oriNumber % 10
+            oriNumber /= 10
+        }
+        return oriNumber == revertNumber || oriNumber == revertNumber / 10
     }
 }
 // @lc code=end
