@@ -73,13 +73,14 @@ class Solution {
     func romanToInt(_ s: String) -> Int {
         guard s.count > 0 else { return 0 }
         var result = 0
-        var lastChar: Character = s.first!
-        for char in s {
-            result += countForRomanCharactor(char)
-            if countForRomanCharactor(char) > countForRomanCharactor(lastChar) {
-                result -= 2 * countForRomanCharactor(lastChar)
+        var lastNumber = 0
+        for (index, char) in s.enumerated() {
+            let number = countForRomanCharactor(char)
+            result += number
+            if index > 0 && number > lastNumber {
+                result -= 2 * lastNumber
             }
-            lastChar = char
+            lastNumber = number
         }
         return result
     }
